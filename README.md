@@ -8,32 +8,28 @@
 
 ## 📌 Team Information
 
-- **Team Name:**  
+- **Team name:HACKVOLT**  
 - **Team Members:**  
-  - Member 1 – Register No  
-  - Member 2 – Register No  
-  - Member 3 – Register No  
-  - Member 4 – Register No (if applicable)
+  -  DEEKSHA O A
+  - ESHA SANJITH 
+  - ASHIDA FATHIMA A 
+  - GAYATHRI S NAIR
 
 - **Problem Domain:**  
-- **Selected Problem Statement:**  
+- **Selected Problem Statement:**Students often choose academic paths or careers without clear understanding of industry demands, required skill sets, or their own competency gaps.This disconnect between education choices and real-world expectations results in skill mismatch and employability challenges for graduates.  
 
 ---
 
 ## 🧩 Problem Description
 
-Briefly describe the problem you are addressing.  
-Explain the background and why this problem is relevant.
+Many students choose academic paths and careers without clearly understanding industry expectations, required skills, or their own competency gaps. This creates a disconnect between education and real-world job demands, leading to skill mismatch and employability challenges. Addressing this gap is crucial to help students make informed decisions and become industry-ready.
 
 ---
 
 ## 💡 Proposed Solution
 
-Describe your solution clearly:
-- What is your approach?
-- How does it solve the problem?
-- Key idea behind the solution.
-
+Describe your solution clearly:We propose a website that aligns student interests and skills with real industry demands to identify career gaps and provide a personalized learning roadmap.
+Students enter their interests and current skills. The system compares them with industry-required skill sets using assessments and career data.It clearly shows what the industry expects, highlights missing skills, and guides students with a structured path to become job-ready.Early, data-driven career alignment to reduce skill mismatch and improve employability.
 ---
 
 ## ⚙️ Technology Stack
