@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PG Assessment Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>PG – Assessment Result</h2>
+
+  <p id="summary"></p>
+  <p id="recommendation"></p>
+
+  <h3>Career & Research Opportunities</h3>
+  <ul id="results"></ul>
+
+  <button onclick="goHome()">Back to Home</button>
+</div>
+
+<script>
+const streamRaw = localStorage.getItem("pgStream");
+const interest = localStorage.getItem("pgInterest");
+const score = Number(localStorage.getItem("pgScore"));
+
+const list = document.getElementById("results");
+
+document.getElementById("summary").innerText =
+  `UG Stream: ${streamRaw} | Interest: ${interest} | Aptitude Score: ${score}/4`;
+
+const stream = streamRaw.toLowerCase();
+
+/* ---------------- STREAM CLASSIFICATION ---------------- */
+
+if (isTechnical(stream)) {
+  document.getElementById("recommendation").innerText =
+    "Stream Category: Technical (Jobs + Research Focus)";
+
+  add("Software Engineer");
+  add("Data Scientist");
+  add("AI / ML Engineer");
+  add("Cloud Solutions Architect");
+  add("Cybersecurity Analyst");
+
+  add("Research Fields:");
+  add("• Artificial Intelligence");
+  add("• Data Science & Analytics");
+  add("• Robotics & Automation");
+  add("• Computer Vision");
+
+}
+
+else if (isArts(stream)) {
+  document.getElementById("recommendation").innerText =
+    "Stream Category: Arts (Creative, Social & Research-Oriented Fields)";
+
+  add("Content Strategist");
+  add("UX Researcher");
+  add("Public Policy Analyst");
+  add("Psychologist");
+  add("Media & Communication Specialist");
+
+  add("Research Fields:");
+  add("• Behavioral Science");
+  add("• Cultural Studies");
+  add("• Social Research");
+  add("• Design Thinking");
+
+}
+
+else if (isMedical(stream)) {
+  document.getElementById("recommendation").innerText =
+    "Stream Category: Medical (Healthcare & Advanced Studies)";
+
+  add("Clinical Research Associate");
+  add("Healthcare Consultant");
+  add("Biomedical Scientist");
+  add("Public Health Analyst");
+
+  add("Further Studies:");
+  add("• MD / MS");
+  add("• MPH (Public Health)");
+  add("• M.Sc Medical Sciences");
+  add("• PhD in Biomedical Research");
+
+}
+
+else {
+  document.getElementById("recommendation").innerText =
+    "Stream Category: General / Interdisciplinary";
+
+  add("Business Analyst");
+  add("Operations Manager");
+  add("Project Coordinator");
+}
+
+/* ---------------- HELPER FUNCTIONS ---------------- */
+
+function add(text) {
+  const li = document.createElement("li");
+  li.innerText = text;
+  list.appendChild(li);
+}
+
+function isTechnical(s) {
+  return s.includes("computer") ||
+         s.includes("engineering") ||
+         s.includes("it") ||
+         s.includes("technology");
+}
+
+function isArts(s) {
+  return s.includes("arts") ||
+         s.includes("humanities") ||
+         s.includes("design") ||
+         s.includes("media") ||
+         s.includes("psychology");
+}
+
+function isMedical(s) {
+  return s.includes("medical") ||
+         s.includes("medicine") ||
+         s.includes("biotech") ||
+         s.includes("pharmacy") ||
+         s.includes("nursing");
+}
+
+function goHome() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

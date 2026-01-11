@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade 10 Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Grade 10 – Assessment Result</h2>
+
+  <p id="summary"></p>
+  <h3 id="streamResult"></h3>
+
+  <h3>Industry-Demanded Career Options</h3>
+  <ul id="careerList"></ul>
+
+  <button onclick="goHome()">Back to Home</button>
+</div>
+
+<script>
+/* Fetch stored data */
+const interestRaw = localStorage.getItem("g10Interest");
+const score = localStorage.getItem("g10Score");
+
+/* Safety check */
+if (!interestRaw || !score) {
+  document.getElementById("summary").innerText =
+    "Assessment data not found. Please complete the assessment again.";
+} else {
+
+  const interest = interestRaw.toLowerCase();
+  document.getElementById("summary").innerText =
+    `Area of Interest: ${interestRaw} | Previous Score: ${score}%`;
+
+  const careerList = document.getElementById("careerList");
+
+  /* INTEREST-BASED RESULT LOGIC */
+  if (interest.includes("science")) {
+    document.getElementById("streamResult").innerText =
+      "Recommended Stream: SCIENCE";
+
+    addCareer("Engineering");
+    addCareer("Medicine");
+    addCareer("Data Science");
+    addCareer("Artificial Intelligence");
+    addCareer("Biotechnology");
+
+  } 
+  else if (interest.includes("arts")) {
+    document.getElementById("streamResult").innerText =
+      "Recommended Stream: ARTS";
+
+    addCareer("Design & Multimedia");
+    addCareer("Journalism");
+    addCareer("Psychology");
+    addCareer("Civil Services");
+    addCareer("Fine Arts");
+
+  } 
+  else if (interest.includes("commerce") || interest.includes("business")) {
+    document.getElementById("streamResult").innerText =
+      "Recommended Stream: COMMERCE";
+
+    addCareer("Chartered Accountant");
+    addCareer("Business Analyst");
+    addCareer("Banking & Finance");
+    addCareer("Entrepreneurship");
+    addCareer("Marketing");
+
+  } 
+  else {
+    document.getElementById("streamResult").innerText =
+      "Recommended Stream: GENERAL / MULTI-DISCIPLINARY";
+
+    addCareer("Skill-based Programs");
+    addCareer("Foundation Courses");
+  }
+
+  function addCareer(career) {
+    const li = document.createElement("li");
+    li.innerText = career;
+    careerList.appendChild(li);
+  }
+}
+
+/* Navigation */
+function goHome() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

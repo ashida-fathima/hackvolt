@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UG Assessment Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>UG – Career Recommendation</h2>
+
+  <p id="summary"></p>
+  <p id="decision"></p>
+
+  <h3>Suggested Career Options</h3>
+  <ul id="options"></ul>
+
+  <button onclick="goHome()">Back to Home</button>
+</div>
+
+<script>
+const stream = localStorage.getItem("ugStream") || "";
+const interest = localStorage.getItem("ugInterest") || "";
+const degree = localStorage.getItem("ugDegree") || "";
+const score = Number(localStorage.getItem("ugScore"));
+const goal = localStorage.getItem("ugGoal");
+
+document.getElementById("summary").innerText =
+  `Degree: ${degree} | Stream: ${stream} | Interest: ${interest} | Aptitude Score: ${score}/4`;
+
+const decisionText = document.getElementById("decision");
+const options = document.getElementById("options");
+
+// Normalize interest text
+const interestLower = interest.toLowerCase();
+
+if (goal === "study") {
+  decisionText.innerText = "Recommended Path: Higher Studies";
+
+  if (interestLower.includes("tech") || interestLower.includes("engineering")) {
+    addOption("MTech / MS in specialized engineering fields");
+    addOption("AI / Data Science specialization");
+    if (score >= 3) addOption("Research-based MS / PhD track");
+
+  } else if (interestLower.includes("arts") || interestLower.includes("design")) {
+    addOption("MA / MFA in your specialization");
+    addOption("Design research or academic teaching");
+    if (score >= 3) addOption("PhD in Arts / Humanities");
+
+  } else if (interestLower.includes("medical") || interestLower.includes("health")) {
+    addOption("MD / MS / MPH programs");
+    addOption("Clinical research or healthcare analytics");
+    if (score >= 3) addOption("Medical research / PhD");
+
+  } else {
+    addOption("MBA / Specialized PG Diploma");
+    addOption("Interdisciplinary postgraduate programs");
+  }
+
+} else {
+  decisionText.innerText = "Recommended Path: Job / Industry";
+
+  if (interestLower.includes("tech") || interestLower.includes("engineering")) {
+    addOption("Software Engineer");
+    addOption("Data Analyst");
+    addOption("System Engineer");
+    if (score >= 3) addOption("R&D Engineer");
+
+  } else if (interestLower.includes("arts") || interestLower.includes("design")) {
+    addOption("Graphic / UX Designer");
+    addOption("Content Strategist");
+    addOption("Media & Communication roles");
+
+  } else if (interestLower.includes("medical") || interestLower.includes("health")) {
+    addOption("Clinical Research Assistant");
+    addOption("Healthcare Administrator");
+    addOption("Medical Lab Specialist");
+
+  } else {
+    addOption("Business Analyst");
+    addOption("Operations Executive");
+    addOption("Management Trainee");
+  }
+}
+
+function addOption(text) {
+  const li = document.createElement("li");
+  li.innerText = text;
+  options.appendChild(li);
+}
+
+function goHome() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

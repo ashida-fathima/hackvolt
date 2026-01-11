@@ -3,31 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Gap Analyzer</title>
+    <title>Career Guidance Platform</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="mainBody">
+<!-- HOME PAGE -->
+<div class="container" id="home">
+    <h1>SEEKLET
+        Career Guidance JUST FOR YOU!!</h1>
+    <p>"BECAUSE YOUR FUTURE DESERVES A PLAN"<br><br>
+       Students often choose careers without understanding industry demands,
+       required skills, or their own competency gaps. This platform helps
+       students make informed career choices.
+       <br><br>Today's education system often operates independently of rapidly evolving 
+       industry requirements. As a result, students graduate with qualifications
+       that do not align with market needs, creating a significant employability gap.
+       <br><br>Our solution connects students, skills, and industry, ensuring education 
+       choices translate into meaningful career outcomes.
+    </p>
+    <!-- TWO BUTTONS -->
+    <button onclick="showStreams()">Explore Career Paths</button>
+    <button onclick="goToStudentAssessment()">Student Assessment</button>
+</div>
 
-    <header>
-        <h1>Skill Gap Analyzer</h1>
-        <p>Bridging the gap between education and industry</p>
-    </header>
+<!-- STREAM SELECTION PAGE -->
+<div class="container hidden" id="streams">
+    <h2>Choose Your Stream</h2>
+    <button onclick="document.getElementById('mainBody').className='science'; showCareers('science')">
+        Science 🧪🔬
+    </button>
+    <button onclick="document.getElementById('mainBody').className='commerce'; showCareers('commerce')">
+        Commerce 📈💼
+    </button>
+    <button onclick="document.getElementById('mainBody').className='arts'; showCareers('arts')">
+        Arts 🎨🎭
+    </button>
+    <br><br>
+    <button class="back" onclick="goHome()">← Back to Home</button>
+</div>
 
-    <section class="problem">
-        <h2>Problem Statement</h2>
-        <p id="problemText">
-            Students frequently select academic pathways or careers without a clear understanding
-            of industry demands, required skill sets, or their own competency gaps. This disconnect
-            between educational choices and real-world expectations leads to skill mismatches and
-            employability challenges for graduates.
-        </p>
-        <button onclick="highlightText()">Highlight Key Issue</button>
-    </section>
+<!-- CAREER DETAILS PAGE -->
+<div class="container hidden" id="careers">
+    <h2 id="careerTitle">Career Opportunities</h2>
+    <ul id="careerList" class="student-details"></ul>
+    <button class="back" onclick="goStreams()">← Back to Streams</button>
+</div>
 
-    <footer>
-        <p>Hackathon Project | Team XYZ</p>
-    </footer>
 
-    <script src="script.js"></script>
+
+<script src="script.js"></script>
 </body>
 </html>

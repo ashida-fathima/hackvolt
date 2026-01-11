@@ -1,0 +1,80 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PG Assessment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>PG Assessment</h2>
+
+  <input id="g12" type="number" placeholder="Grade 12 Score (%)"><br><br>
+  <input id="ug" type="number" placeholder="UG Score (%)"><br><br>
+  <input id="stream" placeholder="UG Stream"><br><br>
+  <input id="interest" placeholder="Area of Interest"><br><br>
+
+  <h3>Aptitude Questions</h3>
+
+  <p>1. Do you prefer research-oriented work?</p>
+  <select id="q1">
+    <option value="">Select</option>
+    <option value="1">Yes</option>
+    <option value="0">No</option>
+  </select><br><br>
+
+  <p>2. Are you comfortable with data analysis?</p>
+  <select id="q2">
+    <option value="">Select</option>
+    <option value="1">Yes</option>
+    <option value="0">No</option>
+  </select><br><br>
+
+  <p>3. Do you enjoy problem-solving and optimization?</p>
+  <select id="q3">
+    <option value="">Select</option>
+    <option value="1">Yes</option>
+    <option value="0">No</option>
+  </select><br><br>
+
+  <p>4. Are you interested in leadership or management roles?</p>
+  <select id="q4">
+    <option value="">Select</option>
+    <option value="1">Yes</option>
+    <option value="0">No</option>
+  </select><br><br>
+
+  <button onclick="submitPG()">Submit</button>
+</div>
+
+<script>
+function submitPG() {
+  const g12 = document.getElementById("g12").value;
+  const ug = document.getElementById("ug").value;
+  const stream = document.getElementById("stream").value;
+  const interest = document.getElementById("interest").value;
+
+  const q1 = document.getElementById("q1").value;
+  const q2 = document.getElementById("q2").value;
+  const q3 = document.getElementById("q3").value;
+  const q4 = document.getElementById("q4").value;
+
+  if (!g12 || !ug || !stream || !interest || q1 === "" || q2 === "" || q3 === "" || q4 === "") {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const aptitudeScore =
+    Number(q1) + Number(q2) + Number(q3) + Number(q4);
+
+  localStorage.setItem("pgStream", stream);
+  localStorage.setItem("pgInterest", interest);
+  localStorage.setItem("pgScore", aptitudeScore);
+
+  window.location.href = "pgR.html";
+}
+</script>
+
+</body>
+</html>

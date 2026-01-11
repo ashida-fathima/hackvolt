@@ -1,68 +1,697 @@
+/* ===============================
+   GLOBAL RESET & ANIMATIONS
+================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-color: #f4f6f8;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.6;
     color: #333;
 }
 
-header {
-    background-color: #1e88e5;
+/* Enhanced fade animations */
+@keyframes fadeUpBig {
+    from { opacity: 0; transform: translateY(40px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { filter: brightness(1) contrast(1); box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+    50% { filter: brightness(1.15) contrast(1.1); box-shadow: 0 0 30px rgba(0,0,0,0.2); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.container {
+    min-height: 100vh;
+    padding: clamp(40px, 8vw, 80px) clamp(20px, 5vw, 40px);
+    animation: fadeUpBig 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Input and Select Styling */
+input, select {
+    width: 100%;
+    max-width: 500px;
+    padding: clamp(12px, 3vw, 18px) clamp(20px, 4vw, 30px);
+    margin: 15px auto;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 25px;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-family: inherit;
+    background: rgba(255,255,255,0.9);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: block;
+    animation: fadeIn 0.6s ease-out;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #7b68ee;
+    box-shadow: 0 6px 25px rgba(123,104,238,0.3);
+    transform: translateY(-2px);
+}
+
+input:hover, select:hover {
+    border-color: #7b68ee;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   HOME PAGE – PASTEL BLUE SEA WITH LOGO
+================================ */
+#home {
+    background: linear-gradient(120deg, #cfefff, #b5e8ff, #a8dfff, #cfefff);
+    background-size: 500% 500%;
+    animation: seaWave 12s ease-in-out infinite;
+    position: relative;
+}
+
+#home::before {
+    content: '🌊✨🌊';
+    position: absolute;
+    top: clamp(15px, 3vw, 25px);
+    left: clamp(15px, 3vw, 25px);
+    font-size: clamp(2rem, 4vw, 3rem);
+    animation: floatWave 6s ease-in-out infinite;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+@keyframes seaWave {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+}
+
+@keyframes floatWave {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.logo {
+    width: clamp(150px, 25vw, 200px);
+    margin: 20px auto;
+    display: block;
+    animation: bounceLogo 2s ease-in-out infinite;
+}
+
+@keyframes bounceLogo {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+#home h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: clamp(20px, 4vw, 30px);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeUpBig 1s ease-out, pulseGlow 3s ease-in-out infinite;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+#home p {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    max-width: 900px;
+    margin: clamp(15px, 3vw, 25px) auto;
+    color: #4a5568;
+    line-height: 1.8;
+    animation: fadeIn 1.2s ease-out 0.3s both;
+}
+
+/* PEACH BUTTONS */
+#home button {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    padding: clamp(15px, 3vw, 20px) clamp(30px, 6vw, 45px);
+    margin: clamp(12px, 2vw, 18px);
+    box-shadow: 0 8px 25px rgba(255,107,107,0.4);
     color: white;
-    padding: 30px;
-    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    animation: fadeIn 1s ease-out 0.6s both, float 3s ease-in-out infinite;
 }
 
-header h1 {
-    font-size: 36px;
+#home button:nth-child(2) {
+    animation-delay: 0.8s, 3.2s;
 }
 
-header p {
-    margin-top: 10px;
-    font-size: 18px;
+/* ===============================
+   1st SUBPAGE – PEACH BACKGROUND
+================================ */
+#streams, #assessment {
+    background: linear-gradient(135deg, #ffe1d6, #ffd1cc, #ffe8e1);
+    background-size: 400% 400%;
+    animation: peachFlow 15s ease-in-out infinite;
 }
 
-.problem {
-    background-color: white;
-    margin: 40px auto;
-    padding: 30px;
-    width: 80%;
+@keyframes peachFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+#streams h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: clamp(30px, 5vw, 50px);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    animation: fadeUpBig 0.8s ease-out;
+}
+
+/* ===============================
+   2nd SUBPAGE – BIG DARK LAVENDER BUTTONS
+================================ */
+#streams button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+    padding: clamp(18px, 4vw, 25px) clamp(40px, 8vw, 60px);
+    margin: clamp(15px, 3vw, 20px);
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+    position: relative;
+    overflow: hidden;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    animation: fadeIn 0.8s ease-out both;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#streams button:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+#streams button:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+#streams button:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+#streams button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s;
+}
+
+#streams button:hover::before {
+    left: 100%;
+}
+
+#streams button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(102,126,234,0.6);
+}
+
+#streams button:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* ===============================
+   SCIENCE/COMMERCE/ARTS PAGES – LIGHT LAVENDER
+================================ */
+#careers {
+    background: linear-gradient(120deg, #efe9ff, #e3dbff, #f0e8ff);
+    background-size: 500% 500%;
+    animation: lavenderMove 10s ease-in-out infinite;
+}
+
+@keyframes lavenderMove {
+    0% { background-position: left top; }
+    25% { background-position: right top; }
+    50% { background-position: right bottom; }
+    75% { background-position: left bottom; }
+    100% { background-position: left top; }
+}
+
+#careers h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: clamp(25px, 4vw, 40px);
+    font-weight: 700;
+    animation: fadeUpBig 0.8s ease-out;
+}
+
+/* PASTEL BLUE OPTIONS */
+#careerList.student-details {
+    list-style: none;
+    width: 100%;
     max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    padding: 0;
 }
 
-.problem h2 {
-    margin-bottom: 15px;
-    color: #1e88e5;
-}
-
-.problem p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #1e88e5;
-    color: white;
-    border: none;
-    border-radius: 5px;
+#careerList.student-details li.student-card {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    padding: clamp(20px, 4vw, 30px);
+    width: 90%;
+    max-width: 600px;
+    margin: clamp(15px, 3vw, 20px) auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,255,255,0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: slideInLeft 0.6s ease-out both;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+#careerList.student-details li.student-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    transition: left 0.6s;
+}
+
+#careerList.student-details li.student-card:hover::before {
+    left: 100%;
+}
+
+#careerList.student-details li.student-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+#careerList.student-details li.student-card strong {
+    display: block;
+    color: #1e40af;
+    font-weight: 600;
+}
+
+/* ===============================
+   STUDENT ASSESSMENT – STUDENTS + STATIONERY
+================================ */
+#assessment {
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255,182,193,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,209,220,0.3) 0%, transparent 50%),
+        linear-gradient(120deg, #db8aaa, #ffd6e8, #ffecf5);
+    background-size: 300px, 280px, cover;
+    animation: pinkBubble 14s ease-in-out infinite;
+    position: relative;
+}
+
+#assessment::before {
+    content: '👨‍🎓👩‍🎓📚✏️📐';
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    animation: floatStationery 8s ease-in-out infinite;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+@keyframes pinkBubble {
+    0%, 100% { background-position: 0% 50%, 100% 50%, 0% 50%; }
+    50% { background-position: 100% 50%, 0% 50%, 100% 50%; }
+}
+
+@keyframes floatStationery {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateY(-25px) rotate(10deg); opacity: 0.8; }
+}
+
+/* Smooth page transitions */
+.container {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.container.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+/* Loading animation for elements */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Enhanced scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus visible for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* BIG PASTEL PINK BOXES */
+#assessment h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: clamp(25px, 4vw, 40px);
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    animation: fadeUpBig 0.8s ease-out;
+}
+
+#assessment .assessment-box,
+#assessment .student-card {
+    background: linear-gradient(135deg, #ffe0e6 0%, #ffd1dc 100%);
+    padding: clamp(25px, 5vw, 35px);
+    width: 90%;
+    max-width: 600px;
+    margin: clamp(20px, 3vw, 25px) auto;
+    border-radius: 25px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    box-shadow: 0 10px 30px rgba(255,209,220,0.4);
+    border: 2px solid rgba(255,255,255,0.9);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.8s ease-out both;
+}
+
+#assessment .assessment-box:hover,
+#assessment .student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255,209,220,0.6);
+}
+
+/* ===============================
+   GRADE PAGES (10th/12th/UG/PG) – PINK ANIMATION
+================================ */
+.container {
+    background: linear-gradient(120deg, #ffc0cb, #ffd6e0, #ffe4ec, #ffc0cb);
+    background-size: 400% 400%;
+    animation: pinkFlow 12s ease-in-out infinite;
+}
+
+@keyframes pinkFlow {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+}
+
+/* LIGHT BLUE BOXES */
+.container h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: clamp(25px, 4vw, 40px);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    animation: fadeUpBig 0.8s ease-out;
+}
+
+.container {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    padding: clamp(25px, 5vw, 35px);
+    width: 90%;
+    max-width: 600px;
+    margin: clamp(20px, 3vw, 25px) auto;
+    border-radius: 25px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    box-shadow: 0 10px 30px rgba(173,216,230,0.4);
+    border: 2px solid rgba(255,255,255,0.9);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.8s ease-out both;
+}
+
+.container {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(173,216,230,0.6);
+}
+
+/* ===============================
+   ENHANCED BUTTONS
+================================ */
+button {
+    padding: clamp(14px, 3vw, 18px) clamp(28px, 6vw, 40px);
+    margin: clamp(12px, 2vw, 15px);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    color: rgb(38, 9, 104);
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 button:hover {
-    background-color: #1565c0;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
 }
 
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #e0e0e0;
-    margin-top: 50px;
+button:active {
+    transform: translateY(-2px) scale(1.02);
+    transition: all 0.1s;
+}
+
+.back {
+    background: linear-gradient(135deg, #e4e7e7 0%, #347b80 100%);
+    margin-top: clamp(20px, 4vw, 30px);
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 1024px) {
+    .container {
+        padding: clamp(30px, 6vw, 60px) clamp(15px, 4vw, 30px);
+    }
+    
+    #home h1 {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+    }
+    
+    #home p {
+        font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    }
+    
+    .container {
+        padding: clamp(25px, 5vw, 50px) clamp(15px, 3vw, 25px);
+    }
+    
+    #home h1 {
+        font-size: clamp(1.6rem, 8vw, 2.5rem);
+        margin-bottom: clamp(15px, 3vw, 25px);
+    }
+    
+    #home p {
+        font-size: clamp(0.9rem, 2vw, 1.05rem);
+        margin: clamp(12px, 2.5vw, 20px) auto;
+    }
+    
+    #streams h2, #careers h2, #assessment h2, .grade-page h2 {
+        font-size: clamp(1.6rem, 6vw, 2.3rem);
+        margin-bottom: clamp(20px, 4vw, 35px);
+    }
+    
+    #streams button {
+        padding: clamp(16px, 3.5vw, 22px) clamp(35px, 7vw, 50px);
+        font-size: clamp(1rem, 2.3vw, 1.2rem);
+        margin: clamp(12px, 2.5vw, 18px);
+        width: 90%;
+        max-width: 400px;
+    }
+    
+    #careerList.student-details li.student-card {
+        width: 95%;
+        padding: clamp(18px, 3.5vw, 25px);
+        font-size: clamp(1rem, 2.3vw, 1.15rem);
+    }
+    
+    #assessment .assessment-box,
+    #assessment .student-card,
+    .grade-box,
+    .grade-page .student-card {
+        width: 95%;
+        padding: clamp(20px, 4vw, 28px);
+        font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    }
+    
+    button {
+        padding: clamp(12px, 2.8vw, 16px) clamp(25px, 5.5vw, 35px);
+        font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+        margin: clamp(10px, 2vw, 14px);
+        width: 90%;
+        max-width: 350px;
+    }
+    
+    input, select {
+        width: 95%;
+        max-width: 400px;
+        padding: clamp(10px, 2.5vw, 15px) clamp(18px, 3.5vw, 25px);
+        font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    
+    .container {
+        padding: clamp(20px, 4vw, 40px) clamp(12px, 2.5vw, 20px);
+    }
+    
+    #home h1 {
+        font-size: clamp(1.4rem, 9vw, 2rem);
+        line-height: 1.3;
+    }
+    
+    #home p {
+        font-size: clamp(0.85rem, 1.9vw, 1rem);
+        line-height: 1.6;
+    }
+    
+    #streams h2, #careers h2, #assessment h2, .grade-page h2 {
+        font-size: clamp(1.4rem, 7vw, 2rem);
+    }
+    
+    #streams button {
+        width: 95%;
+        padding: clamp(14px, 3vw, 18px) clamp(30px, 6vw, 40px);
+    }
+    
+    button {
+        width: 95%;
+        padding: clamp(11px, 2.5vw, 14px) clamp(22px, 5vw, 30px);
+    }
+    
+    input, select {
+        width: 98%;
+        padding: clamp(9px, 2.2vw, 13px) clamp(15px, 3vw, 22px);
+    }
+    
+    #home::before {
+        font-size: 2rem;
+        top: 10px;
+        left: 10px;
+    }
+    
+    #assessment::before {
+        font-size: 2.5rem;
+        top: 10%;
+        right: 5%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    #home p {
+        max-width: 1000px;
+    }
+}
+body{
+    background-image:url("img/bg.jpeg") ;
+    height:100vh ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

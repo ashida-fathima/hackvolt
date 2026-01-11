@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade 12 Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Grade 12 – Assessment Result</h2>
+
+  <p id="summary"></p>
+  <p id="recommendation"></p>
+
+  <h3>Industry-Demanded Career Options</h3>
+  <ul id="jobs"></ul>
+
+  <button onclick="goHome()">Back to Home</button>
+</div>
+
+<script>
+const stream = localStorage.getItem("g12Stream");
+const interest = localStorage.getItem("g12Interest");
+const score = Number(localStorage.getItem("g12Score"));
+
+document.getElementById("summary").innerText =
+  `Stream: ${stream} | Interest: ${interest} | Aptitude Score: ${score}/5`;
+
+const jobs = document.getElementById("jobs");
+
+/* ---------------- STREAM-BASED RECOMMENDATION ---------------- */
+
+if (stream === "Science") {
+  document.getElementById("recommendation").innerText =
+    "Recommended Path: Science-based higher studies and technical careers.";
+
+  addJob("Software Engineer");
+  addJob("Data Scientist");
+  addJob("AI / ML Engineer");
+  addJob("Doctor / Healthcare Professional");
+  addJob("Research Scientist");
+}
+
+else if (stream === "Commerce") {
+  document.getElementById("recommendation").innerText =
+    "Recommended Path: Business, finance, and management-oriented careers.";
+
+  addJob("Chartered Accountant");
+  addJob("Financial Analyst");
+  addJob("Business Analyst");
+  addJob("Investment Banker");
+  addJob("Marketing Manager");
+}
+
+else if (stream === "Arts") {
+  document.getElementById("recommendation").innerText =
+    "Recommended Path: Creative, social science, and communication-based careers.";
+
+  addJob("Journalist");
+  addJob("UX / Graphic Designer");
+  addJob("Psychologist");
+  addJob("Civil Services");
+  addJob("Content Strategist");
+}
+
+else {
+  document.getElementById("recommendation").innerText =
+    "Recommended Path: General career guidance based on interest and aptitude.";
+
+  addJob("Skill Development Programs");
+  addJob("Foundation Courses");
+}
+
+/* ---------------- HELPER FUNCTIONS ---------------- */
+
+function addJob(job) {
+  const li = document.createElement("li");
+  li.innerText = job;
+  jobs.appendChild(li);
+}
+
+function goHome() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

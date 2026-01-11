@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Assessment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Details</h2>
+
+    <input type="text" placeholder="Name" required><br><br>
+    <input type="tel" placeholder="Mobile Number" required><br><br>
+
+    <select id="country">
+        <option value="">Select Country</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+        <option>Other</option>
+    </select><br><br>
+
+    <select id="education">
+        <option value="">Current Educational Status</option>
+        <option value="10">Grade 10 or below</option>
+        <option value="12">Grade 12</option>
+        <option value="ug">UG</option>
+        <option value="pg">PG</option>
+    </select><br><br>
+
+    <button onclick="redirect()">Continue</button>
+</div>
+
+<script>
+function redirect() {
+    let edu = document.getElementById("education").value;
+
+    if (edu === "10") window.location.href = "g10.html";
+    else if (edu === "12") window.location.href = "g12.html";
+    else if (edu === "ug") window.location.href = "ug.html";
+    else if (edu === "pg") window.location.href = "pg.html";
+    else alert("Please select education level");
+}
+</script>
+
+</body>
+</html>
