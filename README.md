@@ -49,10 +49,7 @@ Example:
 ## 🖥️ Implementation Details
 
 Explain how your project works:
-- Overall workflow
-- Key features implemented
-- Any challenges faced and how you solved them
-
+Solution for the problem is implemented using a website. at very first when you open the website you can have two ways of resolving problems either you can just view what are the oppurtunities in relevent to your subbject or you can perzonlize your career based on decision or further step in your journey by just entering your basic details and intrests and then you will  be subjected to attend an aptitude test from which our website suggests you with the best possible career option(within our limitations).
 ---
 
 ## 📂 Project Structure
